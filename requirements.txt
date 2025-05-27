@@ -1,0 +1,12 @@
+yfinance
+FinanceDataReader
+pandas-ta
+xgboost
+lightgbm
+scikit-learn
+streamlit
+opendartreader
+plotly
+matplotlib
+pandas
+numpy
