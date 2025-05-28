@@ -227,31 +227,6 @@ if run_button:
                         fig_cm, ax_cm = plt.subplots()
                         sns.heatmap(cm_test, annot=True, fmt='d', cmap='Blues', ax=ax_cm, 
                                     xticklabels=model.classes_, yticklabels=model.classes_)
-                    st.stop()
-
-                # --- 5. Model Evaluation ---
-                st.subheader("📊 Model Evaluation on Test Set")
-                if y_test.nunique() > 1:
-                    with st.spinner("Evaluating model..."):
-                        # The evaluate_model from model_train.py already creates a plot.
-                        # We need to modify it or create a new function here to pass `ax`.
-                        
-                        # Re-implementing evaluation plotting part here for Streamlit
-                        y_pred_test = model.predict(X_test)
-                        y_pred_proba_test = model.predict_proba(X_test)[:, 1]
-                        
-                        test_accuracy = sns.accuracy_score(y_test, y_pred_test)
-                        test_roc_auc = sns.roc_auc_score(y_test, y_pred_proba_test)
-                        cm_test = sns.confusion_matrix(y_test, y_pred_test)
-                        
-                        st.write(f"Test Set Accuracy: {test_accuracy:.4f}")
-                        st.write(f"Test Set ROC AUC: {test_roc_auc:.4f}")
-                        st.text("Classification Report (Test Set):")
-                        st.text(sns.classification_report(y_test, y_pred_test))
-
-                        fig_cm, ax_cm = plt.subplots()
-                        sns.heatmap(cm_test, annot=True, fmt='d', cmap='Blues', ax=ax_cm, 
-                                    xticklabels=model.classes_, yticklabels=model.classes_)
                         ax_cm.set_title('Confusion Matrix (Test Set)')
                         ax_cm.set_xlabel('Predicted Label')
                         ax_cm.set_ylabel('True Label')
